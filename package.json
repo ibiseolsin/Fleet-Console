@@ -1,0 +1,35 @@
+{
+  "name": "fleet-console",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "여러 AI 코딩 에이전트 플릿의 판정을 도구와 화면으로 여는 콘솔",
+  "scripts": {
+    "agent": "node --env-file-if-exists=.env scripts/agent.mjs",
+    "agent:check": "node --env-file-if-exists=.env scripts/agent-check.mjs",
+    "approve": "node scripts/approve.mjs",
+    "check": "npm run fixture && npm run fixture:check && npm run mcp:check && npm run mcp:write-check && npm run usage:check",
+    "eval": "npm run fixture && node scripts/eval.mjs",
+    "eval:coverage": "npm run fixture && node scripts/eval-coverage.mjs",
+    "eval:settings": "npm run fixture && node scripts/eval-settings.mjs",
+    "fixture": "node scripts/fixture.mjs && node scripts/fixture-runs.mjs",
+    "fixture:check": "node scripts/fixture-check.mjs",
+    "import:incidents": "node scripts/import-incidents.mjs",
+    "import:runs": "node scripts/import-runs.mjs",
+    "import:usage": "node scripts/import-usage.mjs",
+    "mcp": "node src/mcp/server.mjs",
+    "mcp:check": "node scripts/mcp-check.mjs",
+    "mcp:write-check": "node scripts/mcp-write-check.mjs",
+    "test": "node --test \"sp-sync/test/*.test.mjs\"",
+    "usage:check": "node scripts/usage-check.mjs",
+    "web": "npm --prefix web run dev",
+    "web:build": "npm --prefix web run build",
+    "web:start": "npm --prefix web run start",
+    "demo:check": "node scripts/demo-check.mjs",
+    "demo:browser-check": "node scripts/demo-browser-check.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^4.6.1"
+  }
+}

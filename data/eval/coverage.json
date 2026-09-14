@@ -1,0 +1,634 @@
+{
+ "builtAt": "2026-09-14T06:01:41.838Z",
+ "note": "반입한 회차 기록의 사유 문장이 코드로 분류되는 비율. 만든 것은 scripts/eval-coverage.mjs (npm run eval:coverage). 판정이 아니라 라벨링이다 — 분류표는 src/fleet/reasons.mjs.",
+ "runs": {
+  "files": 10,
+  "cycles": 185
+ },
+ "tables": [
+  {
+   "table": "착륙",
+   "column": "결과",
+   "kind": "결과 갈래",
+   "samples": 48,
+   "unique": 37,
+   "hold": {
+    "coded": 0,
+    "codes": [
+     {
+      "code": "other",
+      "n": 48
+     }
+    ]
+   },
+   "own": {
+    "coded": 48,
+    "other": 0,
+    "codes": [
+     {
+      "code": "merged",
+      "n": 42
+     },
+     {
+      "code": "push-failed",
+      "n": 3
+     },
+     {
+      "code": "check-failed",
+      "n": 2
+     },
+     {
+      "code": "conflict-failed",
+      "n": 1
+     }
+    ]
+   },
+   "coverage": 100,
+   "otherSamples": []
+  },
+  {
+   "table": "파견",
+   "column": "결과",
+   "kind": "결과 갈래",
+   "samples": 82,
+   "unique": 8,
+   "hold": {
+    "coded": 0,
+    "codes": [
+     {
+      "code": "other",
+      "n": 82
+     }
+    ]
+   },
+   "own": {
+    "coded": 82,
+    "other": 0,
+    "codes": [
+     {
+      "code": "submitted",
+      "n": 33
+     },
+     {
+      "code": "submitted-hook",
+      "n": 23
+     },
+     {
+      "code": "name-failed",
+      "n": 15
+     },
+     {
+      "code": "sent",
+      "n": 6
+     },
+     {
+      "code": "wrapper",
+      "n": 3
+     },
+     {
+      "code": "create-failed",
+      "n": 1
+     },
+     {
+      "code": "redispatch",
+      "n": 1
+     }
+    ]
+   },
+   "coverage": 100,
+   "otherSamples": []
+  },
+  {
+   "table": "막힘",
+   "column": "이유",
+   "kind": "착륙 막힘 사유",
+   "samples": 2,
+   "unique": 2,
+   "hold": {
+    "coded": 0,
+    "codes": [
+     {
+      "code": "other",
+      "n": 2
+     }
+    ]
+   },
+   "own": {
+    "coded": 2,
+    "other": 0,
+    "codes": [
+     {
+      "code": "unchecked",
+      "n": 1
+     },
+     {
+      "code": "dispatch-unverified",
+      "n": 1
+     }
+    ]
+   },
+   "coverage": 100,
+   "otherSamples": []
+  },
+  {
+   "table": "결정 필요",
+   "column": "내용",
+   "kind": "사람 호출 사유",
+   "samples": 97,
+   "unique": 24,
+   "hold": {
+    "coded": 23,
+    "codes": [
+     {
+      "code": "other",
+      "n": 74
+     },
+     {
+      "code": "limit-hold",
+      "n": 21
+     },
+     {
+      "code": "decision",
+      "n": 2
+     }
+    ]
+   },
+   "own": {
+    "coded": 97,
+    "other": 0,
+    "codes": [
+     {
+      "code": "replan",
+      "n": 36
+     },
+     {
+      "code": "limit-hold",
+      "n": 21
+     },
+     {
+      "code": "worker-decide",
+      "n": 13
+     },
+     {
+      "code": "stray-branch",
+      "n": 11
+     },
+     {
+      "code": "stray-window",
+      "n": 6
+     },
+     {
+      "code": "land-hold",
+      "n": 3
+     },
+     {
+      "code": "plan-dirty",
+      "n": 3
+     },
+     {
+      "code": "decision-tag",
+      "n": 2
+     },
+     {
+      "code": "main-unpushed",
+      "n": 1
+     },
+     {
+      "code": "resume-exhausted",
+      "n": 1
+     }
+    ]
+   },
+   "coverage": 100,
+   "otherSamples": []
+  }
+ ],
+ "live": {
+  "samples": 3,
+  "codes": [
+   {
+    "code": "unchecked",
+    "n": 1
+   },
+   {
+    "code": "asleep",
+    "n": 1
+   },
+   {
+    "code": "limit",
+    "n": 1
+   }
+  ],
+  "other": 0
+ },
+ "calls": {
+  "totals": {
+   "items": 32,
+   "rows": 97
+  },
+  "byCode": [
+   {
+    "code": "replan",
+    "need": "판단",
+    "note": "단계가 끝났다 — 다음 계획은 사람이 짠다",
+    "items": 7,
+    "rows": 36
+   },
+   {
+    "code": "limit-hold",
+    "need": "불필요",
+    "note": "한도가 차 파견을 멈췄다 — 초기화되면 저절로 풀린다",
+    "items": 9,
+    "rows": 21
+   },
+   {
+    "code": "worker-decide",
+    "need": "판단",
+    "note": "워커가 카드 `wait` 로 올린 질문 — 답을 골라야 한다",
+    "items": 2,
+    "rows": 13
+   },
+   {
+    "code": "stray-branch",
+    "need": "조작",
+    "note": "브랜치 이름이 `sliceN` 이 아니다",
+    "items": 6,
+    "rows": 11
+   },
+   {
+    "code": "stray-window",
+    "need": "조작",
+    "note": "슬라이스를 알 수 없는 창 — 닫거나 이름을 고친다",
+    "items": 3,
+    "rows": 6
+   },
+   {
+    "code": "land-hold",
+    "need": "판단",
+    "note": "워커가 착륙을 멈춰 달라고 했다",
+    "items": 1,
+    "rows": 3
+   },
+   {
+    "code": "plan-dirty",
+    "need": "판단",
+    "note": "계획이 미커밋 — 검토하고 커밋해야 파견된다",
+    "items": 1,
+    "rows": 3
+   },
+   {
+    "code": "decision-tag",
+    "need": "판단",
+    "note": "`[결정 필요]` 태그가 붙은 슬라이스",
+    "items": 1,
+    "rows": 2
+   },
+   {
+    "code": "main-unpushed",
+    "need": "조작",
+    "note": "본체가 앞서 있다 — push 하면 된다",
+    "items": 1,
+    "rows": 1
+   },
+   {
+    "code": "resume-exhausted",
+    "need": "판단",
+    "note": "재개 2회 실패 — 사람이 보고 정한다",
+    "items": 1,
+    "rows": 1
+   }
+  ],
+  "needs": [
+   {
+    "need": "판단",
+    "items": 13,
+    "rows": 58
+   },
+   {
+    "need": "조작",
+    "items": 10,
+    "rows": 18
+   },
+   {
+    "need": "불필요",
+    "items": 9,
+    "rows": 21
+   },
+   {
+    "need": "미분류",
+    "items": 0,
+    "rows": 0
+   }
+  ],
+  "strict": {
+   "items": 40.625,
+   "rows": 59.79381443298969
+  },
+  "loose": {
+   "items": 71.875,
+   "rows": 78.35051546391753
+  },
+  "items": [
+   {
+    "project": "SP-sync",
+    "code": "main-unpushed",
+    "need": "조작",
+    "rows": 1,
+    "what": "본체 미push"
+   },
+   {
+    "project": "SP-sync",
+    "code": "stray-branch",
+    "need": "조작",
+    "rows": 1,
+    "what": "flatback"
+   },
+   {
+    "project": "SP-sync",
+    "code": "replan",
+    "need": "판단",
+    "rows": 1,
+    "what": "현재 단계 끝 (2단계 — 워크스페이스 흐름 자동화 (`fleet` 하위 명령))"
+   },
+   {
+    "project": "SP-sync",
+    "code": "decision-tag",
+    "need": "판단",
+    "rows": 2,
+    "what": "6번 완료 회수 tasks review"
+   },
+   {
+    "project": "SP-sync",
+    "code": "replan",
+    "need": "판단",
+    "rows": 4,
+    "what": "현재 단계 끝 (3단계 — 정리: 모듈 분할, 리뷰 빚 청산, 문서 정합 (+ 완료 회수))"
+   },
+   {
+    "project": "SP-sync",
+    "code": "stray-branch",
+    "need": "조작",
+    "rows": 3,
+    "what": "slice1-2"
+   },
+   {
+    "project": "SP-sync",
+    "code": "stray-branch",
+    "need": "조작",
+    "rows": 3,
+    "what": "slice2-2"
+   },
+   {
+    "project": "SP-sync",
+    "code": "stray-window",
+    "need": "조작",
+    "rows": 3,
+    "what": "미분류 창"
+   },
+   {
+    "project": "SP-sync",
+    "code": "stray-branch",
+    "need": "조작",
+    "rows": 1,
+    "what": "slice3-2"
+   },
+   {
+    "project": "SP-sync",
+    "code": "stray-branch",
+    "need": "조작",
+    "rows": 1,
+    "what": "slice4-2"
+   },
+   {
+    "project": "SP-sync",
+    "code": "stray-window",
+    "need": "조작",
+    "rows": 1,
+    "what": "미분류 창"
+   },
+   {
+    "project": "SP-sync",
+    "code": "land-hold",
+    "need": "판단",
+    "rows": 3,
+    "what": "slice5 (워커 대기)"
+   },
+   {
+    "project": "SP-sync",
+    "code": "replan",
+    "need": "판단",
+    "rows": 3,
+    "what": "현재 단계 끝 (4단계 — 헤드리스 워커 (Codex · Antigravity))"
+   },
+   {
+    "project": "SP-sync",
+    "code": "worker-decide",
+    "need": "판단",
+    "rows": 10,
+    "what": "slice12 (워커 대기)"
+   },
+   {
+    "project": "SP-sync",
+    "code": "replan",
+    "need": "판단",
+    "rows": 8,
+    "what": "현재 단계 끝 (5단계 — `[어려움]` 은 codex xhigh, 한도 걸리면 Claude ↔ codex 인계)"
+   },
+   {
+    "project": "SP-sync",
+    "code": "limit-hold",
+    "need": "불필요",
+    "rows": 1,
+    "what": "26번 worktree create --agent claude --prompt 로 파견 실측, 되면 채택"
+   },
+   {
+    "project": "SP-sync",
+    "code": "limit-hold",
+    "need": "불필요",
+    "rows": 1,
+    "what": "26번 worktree create --agent claude --prompt 로 파견 실측, 되면 채택"
+   },
+   {
+    "project": "SP-sync",
+    "code": "limit-hold",
+    "need": "불필요",
+    "rows": 4,
+    "what": "26번 worktree create --agent claude --prompt 로 파견 실측, 되면 채택"
+   },
+   {
+    "project": "SP-sync",
+    "code": "limit-hold",
+    "need": "불필요",
+    "rows": 1,
+    "what": "26번 worktree create --agent claude --prompt 로 파견 실측, 되면 채택"
+   },
+   {
+    "project": "SP-sync",
+    "code": "limit-hold",
+    "need": "불필요",
+    "rows": 1,
+    "what": "27번 terminal read --screen 의 폴백과 tui-idle 판정 근거 실측"
+   },
+   {
+    "project": "SP-sync",
+    "code": "limit-hold",
+    "need": "불필요",
+    "rows": 2,
+    "what": "27번 terminal read --screen 의 폴백과 tui-idle 판정 근거 실측"
+   },
+   {
+    "project": "SP-sync",
+    "code": "replan",
+    "need": "판단",
+    "rows": 4,
+    "what": "현재 단계 끝 (6단계 — Orca 기능 도입: 카드 상태, 파견 단순화, 절전 호환)"
+   },
+   {
+    "project": "SP-sync",
+    "code": "limit-hold",
+    "need": "불필요",
+    "rows": 4,
+    "what": "31번 tasks today --apply — 마감일을 오늘로 쓴다"
+   },
+   {
+    "project": "SP-sync",
+    "code": "plan-dirty",
+    "need": "판단",
+    "rows": 3,
+    "what": "PLAN.md 미커밋"
+   },
+   {
+    "project": "SP-sync",
+    "code": "limit-hold",
+    "need": "불필요",
+    "rows": 1,
+    "what": "35번 착륙 — 검사한 커밋만 머지한다 (#1)"
+   },
+   {
+    "project": "SP-sync",
+    "code": "limit-hold",
+    "need": "불필요",
+    "rows": 6,
+    "what": "35번 착륙 — 검사한 커밋만 머지한다 (#1)"
+   },
+   {
+    "project": "SP-sync",
+    "code": "replan",
+    "need": "판단",
+    "rows": 5,
+    "what": "현재 단계 끝 (7단계 — SP 일정 관리 확장: 표류 감지·오늘 편성 제안)"
+   },
+   {
+    "project": "SP-sync",
+    "code": "stray-branch",
+    "need": "조작",
+    "rows": 2,
+    "what": "resume-test"
+   },
+   {
+    "project": "SP-sync",
+    "code": "stray-window",
+    "need": "조작",
+    "rows": 2,
+    "what": "미분류 창"
+   },
+   {
+    "project": "SP-sync",
+    "code": "resume-exhausted",
+    "need": "판단",
+    "rows": 1,
+    "what": "slice43 (claude)"
+   },
+   {
+    "project": "SP-sync",
+    "code": "worker-decide",
+    "need": "판단",
+    "rows": 3,
+    "what": "slice45 (워커 대기)"
+   },
+   {
+    "project": "SP-sync",
+    "code": "replan",
+    "need": "판단",
+    "rows": 11,
+    "what": "현재 단계 끝 (9단계 — 재개·자원·의미 정리: coordinator 동기화, 자원 예약, 한도 뒤 재개, 마감 의미, 직접 Codex 세션)"
+   }
+  ]
+ },
+ "codeBooks": {
+  "block": [
+   {
+    "code": "asleep",
+    "note": "창이 닫혔거나 잠들어 CLI 로 못 깨움"
+   },
+   {
+    "code": "limit",
+    "note": "에이전트 사용량 한도 — 초기화까지 막힘"
+   },
+   {
+    "code": "dispatch-unverified",
+    "note": "파견은 했는데 제출을 확인 못 함"
+   },
+   {
+    "code": "unchecked",
+    "note": "유휴인데 PLAN.md 가 미체크 — 완료 신호 없음"
+   },
+   {
+    "code": "conflict",
+    "note": "머지 충돌"
+   }
+  ],
+  "land": [
+   {
+    "code": "merged",
+    "note": "PR 이 머지됐다"
+   },
+   {
+    "code": "push-failed",
+    "note": "push 단계에서 실패"
+   },
+   {
+    "code": "pr-failed",
+    "note": "PR 생성 단계에서 실패"
+   },
+   {
+    "code": "check-failed",
+    "note": "검사 단계에서 실패"
+   },
+   {
+    "code": "conflict-failed",
+    "note": "충돌 해소 실패"
+   }
+  ],
+  "dispatch": [
+   {
+    "code": "redispatch",
+    "note": "앞 회차가 못 보낸 것을 다시 보냄"
+   },
+   {
+    "code": "submitted",
+    "note": "세션이 뜨고 프롬프트 제출까지 확인"
+   },
+   {
+    "code": "submitted-hook",
+    "note": "Orca 가 제출하고 훅 기록으로 확인"
+   },
+   {
+    "code": "wrapper",
+    "note": "헤드리스 워커 래퍼를 띄웠다 (제출 확인이 없다)"
+   },
+   {
+    "code": "sent",
+    "note": "이미 있는 창에 지시만 보냄"
+   },
+   {
+    "code": "name-failed",
+    "note": "워크스페이스 이름 규칙에 걸려 못 만듦"
+   },
+   {
+    "code": "create-failed",
+    "note": "워크스페이스 생성 실패"
+   }
+  ]
+ }
+}

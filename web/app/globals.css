@@ -1,0 +1,607 @@
+/*
+ * 폭 400px 에서 가로 스크롤이 없어야 한다 (슬라이스 5 완료 기준).
+ * 그래서 표를 표로 그리지 않는다 — 회차 기록의 칸은 한 문장씩 들어가 있어서, 좁은 화면에서
+ * 표로 두면 반드시 넘친다. 행 하나를 카드 하나로 세우고 넓어지면 라벨을 왼쪽으로 돌린다.
+ */
+:root {
+  --bg: #f7f7f5;
+  --panel: #ffffff;
+  --line: #e3e2dd;
+  --ink: #1c1b19;
+  --dim: #6b6862;
+  --accent: #2f6f5e;
+  --warn: #9a5b1e;
+  --stop: #99372f;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 15px/1.6 system-ui, "Segoe UI", "Malgun Gothic", sans-serif;
+  overflow-wrap: anywhere;
+}
+
+a {
+  color: inherit;
+}
+
+.wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 20px 16px 64px;
+}
+
+header.top {
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
+}
+
+header.top .wrap {
+  padding-block: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  align-items: baseline;
+}
+
+header.top b {
+  font-size: 16px;
+}
+
+header.top span {
+  color: var(--dim);
+  font-size: 13px;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0 0 4px;
+}
+
+h2 {
+  font-size: 16px;
+  margin: 28px 0 10px;
+}
+
+h3 {
+  font-size: 14px;
+  margin: 18px 0 8px;
+  color: var(--dim);
+}
+
+.lede {
+  color: var(--dim);
+  font-size: 13px;
+  margin: 0 0 20px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+
+/* 회차 목록 — 날짜 하나에 회차 여럿 */
+.day {
+  margin-bottom: 22px;
+}
+
+.day > .head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.day > .head b {
+  font-size: 15px;
+}
+
+.runs {
+  display: grid;
+  gap: 6px;
+}
+
+.run {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  align-items: baseline;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 9px 12px;
+  text-decoration: none;
+}
+
+.run:hover {
+  border-color: var(--accent);
+}
+
+.run .time {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  min-width: 44px;
+}
+
+.run .projects {
+  color: var(--dim);
+  font-size: 13px;
+  flex: 1 1 120px;
+}
+
+/* 숫자 배지 — 0 은 흐리게, 사람을 부르는 것은 색으로 */
+.counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  font-size: 12px;
+}
+
+.n {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 1px 8px;
+  white-space: nowrap;
+  color: var(--dim);
+}
+
+.n.on {
+  color: var(--ink);
+  border-color: #c9c7c0;
+  background: #f1f0ec;
+}
+
+.n.on.stop {
+  color: var(--stop);
+  border-color: #e2c3bf;
+  background: #fbf1ef;
+}
+
+.n.on.warn {
+  color: var(--warn);
+  border-color: #e6d3ba;
+  background: #fbf5ec;
+}
+
+/* 회차 상세 — 단계 셋 */
+.stage {
+  border-left: 3px solid var(--line);
+  padding-left: 12px;
+  margin: 22px 0;
+}
+
+.stage > .head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 8px;
+  align-items: baseline;
+}
+
+.stage > .head b {
+  font-size: 15px;
+}
+
+.stage > .head span {
+  color: var(--dim);
+  font-size: 12px;
+}
+
+.empty {
+  color: var(--dim);
+  font-size: 13px;
+  margin: 6px 0 0;
+}
+
+/* 표 한 행 = 카드 하나. 좁으면 라벨이 위로, 넓으면 왼쪽으로. */
+.rows {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.row {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  display: grid;
+  gap: 4px;
+}
+
+.row div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0 10px;
+}
+
+.row dt {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--dim);
+  margin: 0;
+}
+
+.row dd {
+  margin: 0;
+  font-size: 14px;
+}
+
+.row div.why dd {
+  color: var(--stop);
+}
+
+@media (min-width: 560px) {
+  .row div {
+    grid-template-columns: 84px 1fr;
+  }
+
+  .row dt {
+    font-size: 12px;
+    padding-top: 2px;
+  }
+}
+
+.notes {
+  display: grid;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--dim);
+}
+
+.back {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--dim);
+  margin-bottom: 12px;
+}
+
+.meta {
+  color: var(--dim);
+  font-size: 13px;
+  margin: 0 0 4px;
+}
+
+.pager {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+  font-size: 13px;
+}
+
+.pager a {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 6px 10px;
+  text-decoration: none;
+}
+
+/* ─── 슬라이스 6 — 승인 큐와 비용·시간 ─────────────────────────────────────── */
+
+header.top nav {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  margin-left: auto;
+}
+
+header.top nav a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+header.top nav a:hover {
+  text-decoration: underline;
+}
+
+/* 결정 뒤 주소줄로 돌아온 한마디. 실패면 붉게 — 왜 안 됐는지가 승인 화면에서 제일 중요하다. */
+.flash {
+  margin: 0 0 16px;
+  padding: 10px 12px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--panel);
+  font-size: 13px;
+}
+
+.flash.bad {
+  border-color: var(--stop);
+  color: var(--stop);
+}
+
+/* 승인·보류. 400px 에서 줄이 바뀌어야 하므로 flex-wrap 이고 메모 칸이 남는 폭을 먹는다. */
+.decide {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.decide input {
+  flex: 1 1 160px;
+  min-width: 0;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+}
+
+.decide button {
+  padding: 7px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.decide button.go {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.decide button.stop {
+  border-color: var(--stop);
+  color: var(--stop);
+}
+
+/* 단계별 막대. 표가 아니라 세 줄짜리 블록이라 좁은 화면에서도 안 넘친다. */
+.bars {
+  display: grid;
+  gap: 8px;
+  margin: 4px 0 12px;
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3px;
+  font-size: 13px;
+}
+
+.bar .name {
+  color: var(--dim);
+}
+
+.bar.top .name {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.bar .fill {
+  height: 8px;
+  min-width: 2px;
+  border-radius: 4px;
+  background: var(--line);
+}
+
+.bar.top .fill {
+  background: var(--accent);
+}
+
+.bar .val {
+  color: var(--dim);
+  font-size: 12px;
+}
+
+/* 에이전트 루프 (슬라이스 7) — 시작 폼과 실행 상세의 단계 목록. 표가 아니라 세로 목록이라 400px 에서도 안 넘친다. */
+.agent-start textarea {
+  flex: 1 1 100%;
+  min-width: 0;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.agent-start label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--dim);
+}
+
+.agent-start label input {
+  flex: 0 0 64px;
+  width: 64px;
+}
+
+.steps {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+  min-width: 0;
+}
+
+.step .who {
+  font-size: 12px;
+  color: var(--dim);
+  padding-top: 3px;
+  white-space: nowrap;
+}
+
+.step p {
+  margin: 0;
+  min-width: 0;
+}
+
+.step.text p {
+  white-space: pre-wrap;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+}
+
+.step .args {
+  display: block;
+  font-size: 12px;
+  color: var(--dim);
+  white-space: pre-wrap;
+}
+
+.step .why-line {
+  color: var(--accent);
+}
+
+.step details {
+  min-width: 0;
+}
+
+.step summary {
+  cursor: pointer;
+  color: var(--dim);
+  font-size: 13px;
+}
+
+.step pre {
+  margin: 6px 0 0;
+  padding: 8px 12px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 24em;
+  overflow-y: auto;
+}
+
+.step.stop p,
+.step.deny p {
+  color: var(--stop);
+}
+
+/*
+ * 평가 표 넷 (슬라이스 10). 머리말의 "표를 표로 그리지 않는다" 는 **회차 기록의 표** 이야기다 —
+ * 칸마다 한 문장이 들어가 400px 에서 반드시 넘쳤다. 여기 넷은 칸이 수와 코드뿐이라 표로 둔다.
+ * 그래도 좁은 화면에서 밀릴 수 있어 표마다 가로 스크롤 상자에 넣는다 — 넘치는 것은 표 하나지
+ * 문서 전체가 아니다.
+ */
+.tblwrap {
+  overflow-x: auto;
+  margin: 4px 0 12px;
+}
+
+table.tbl {
+  border-collapse: collapse;
+  font-size: 13px;
+  width: 100%;
+}
+
+table.tbl th,
+table.tbl td {
+  border-bottom: 1px solid var(--line);
+  padding: 6px 10px 6px 0;
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+table.tbl th {
+  color: var(--dim);
+  font-weight: 500;
+}
+
+table.tbl td.wrap-cell {
+  white-space: normal;
+  min-width: 200px;
+  color: var(--dim);
+}
+
+table.tbl td.num {
+  font-variant-numeric: tabular-nums;
+}
+
+table.tbl tr.hi td {
+  background: #f1f5f3;
+}
+
+/* 시나리오 한 줄 — 결과 배지와 기대/실제를 접어 둔 상세. */
+.cases {
+  display: grid;
+  gap: 6px;
+  margin: 4px 0 12px;
+}
+
+.case {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+.case > summary {
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  align-items: baseline;
+}
+
+.case > summary b {
+  font-weight: 600;
+}
+
+.case .tag {
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.case .tag.stop {
+  color: var(--stop);
+}
+
+.case .tag.warn {
+  color: var(--warn);
+}
+
+.case .tag.dim {
+  color: var(--dim);
+}
+
+.case dl {
+  margin: 8px 0 2px;
+  display: grid;
+  gap: 6px;
+}
+
+.case dt {
+  color: var(--dim);
+  font-size: 12px;
+}
+
+.case dd {
+  margin: 0;
+}

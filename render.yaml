@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: fleet-console
+    runtime: docker
+    plan: free
+    numInstances: 1
+    autoDeployTrigger: "off"
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: FLEET_STATE_ROOT
+        value: /var/data/fleet
+      - key: FLEET_DAILY_RUNS
+        value: "20"
+      - key: FLEET_MAX_RUN_USD
+        value: "0.25"
+      - key: OPENAI_API_KEY
+        sync: false
+      # State snapshot: a private GitHub repository holding one state.tar.gz (scripts/state-sync.mjs).
+      - key: FLEET_STATE_REPO
+        sync: false
+      - key: FLEET_STATE_TOKEN
+        sync: false

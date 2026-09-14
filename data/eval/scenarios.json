@@ -1,0 +1,134 @@
+{
+ "builtAt": "2026-09-14T06:08:33.288Z",
+ "note": "PRD.md §9 시나리오 10개를 픽스처로 재생한 결과. 만든 것은 scripts/eval.mjs (npm run eval).",
+ "baseline": {
+  "caps": {
+   "atlas": 3,
+   "beacon": 2,
+   "cobalt": 3
+  },
+  "resumeMax": 2
+ },
+ "budgetMs": 10000,
+ "counts": {
+  "total": 10,
+  "replayed": 9,
+  "matched": 9,
+  "mismatched": 0,
+  "skipped": 1
+ },
+ "timing": {
+  "totalMs": 3908,
+  "maxMs": 496,
+  "overBudget": []
+ },
+ "planDirty": {
+  "dirty": "PLAN.md 미커밋 변경 — 커밋(`/plan-review`)이 파견 신호",
+  "clean": null
+ },
+ "isolation": {
+  "files": 233,
+  "drift": []
+ },
+ "scenarios": [
+  {
+   "n": 1,
+   "name": "정상 착륙",
+   "source": "실제 회차 기록",
+   "pass": "base",
+   "expect": "atlas/slice2 — 완료 체크 + 커밋 + 유휴 → 착륙 자격 있음(ready)",
+   "actual": "atlas/slice2 ready — 체크 완료 · 커밋 1개 · 깨끗함",
+   "result": "match",
+   "ms": 496
+  },
+  {
+   "n": 2,
+   "name": "미완인데 유휴",
+   "source": "2026-09-10 회차의 막힘 항목",
+   "pass": "base",
+   "expect": "beacon/slice2 — 착륙하지 않고 막힘(blocked), 사유에 \"미체크\"",
+   "actual": "beacon/slice2 blocked — 잠듦(claude done 11:58) · 유휴인데 2번이 미체크 — 막힘 (재전송하지 않음) — CLI 로 못 깨움 — 사람이 Orca 에서 탭을 열어야 함",
+   "result": "match",
+   "ms": 449
+  },
+  {
+   "n": 3,
+   "name": "계획 미커밋 상태의 파견",
+   "source": "사고 기록 (미검토 계획이 파견됨)",
+   "pass": "plan-dirty",
+   "expect": "기준 관찰에서 자격이 있던 beacon 4번·cobalt 2번이 보류되고 사유가 planDirtyBlock 의 문장, 자격 있는 슬라이스 0개",
+   "actual": "beacon 4번 보류(other) — PLAN.md 미커밋 변경 — 커밋(`/plan-review`)이 파견 신호 / cobalt 2번 보류(other) — PLAN.md 미커밋 변경 — 커밋(`/plan-review`)이 파견 신호 / 자격 있는 슬라이스 0개",
+   "result": "match",
+   "ms": 407
+  },
+  {
+   "n": 4,
+   "name": "선행 의존 미충족",
+   "source": "계획서의 선행 표시 슬라이스",
+   "pass": "base",
+   "expect": "atlas 4번 `[선행: 2]` — 파견 자격 없음(deps-undone) + 어느 슬라이스 때문인지",
+   "actual": "atlas 4번 보류(deps-undone) — 선행 미완: 2번",
+   "result": "match",
+   "ms": 380
+  },
+  {
+   "n": 5,
+   "name": "동시 실행 상한 도달",
+   "source": "상한 설정",
+   "pass": "base",
+   "expect": "beacon 5번 — 동시 상한을 채워 보류(cap-project). 픽스처 상한은 2 (PRD 예시의 3이 아니다)",
+   "actual": "beacon(상한 2) 5번 보류(cap-project) — 동시 상한 2개를 채움",
+   "result": "match",
+   "ms": 405
+  },
+  {
+   "n": 6,
+   "name": "한도로 막힌 워크스페이스",
+   "source": "재개 대기 기록",
+   "pass": "base",
+   "expect": "초기화 전이면 대기 — cobalt/slice5 는 막힘(한도) · 초기화가 지난 atlas/slice3 은 재개(resume)",
+   "actual": "초기화 전 cobalt/slice5 blocked — 헤드리스(codex) 한도 막힘 — 초기화 16:43 (exit 1) / 초기화 지남 atlas/slice3 resume(0회) — codex 래퍼 새 턴 (1/2)",
+   "result": "match",
+   "ms": 476
+  },
+  {
+   "n": 7,
+   "name": "재개 2회 소진",
+   "source": "재시도 상한",
+   "pass": "base",
+   "expect": "cobalt/slice5 — 재개 상한(2)을 소진해 사람에게 넘김(exhausted)",
+   "actual": "cobalt/slice5 exhausted(2회) — 재개 2회 실패 — 사람이 볼 것 (codex 사용량 한도)",
+   "result": "match",
+   "ms": 463
+  },
+  {
+   "n": 8,
+   "name": "카드가 질문 대기 중",
+   "source": "사고 기록 (승인 문구로 착륙이 영영 멈춤)",
+   "pass": "base",
+   "expect": "beacon/slice3 — 재개 갈래가 wait(워커가 결정을 기다림)이고 카드 `wait` 가 차 있다",
+   "actual": "beacon/slice3 wait(1회) — 워커가 결정을 기다림: 수집 주기를 5분과 1시간 중 무엇으로 둘지 / 카드 wait=\"수집 주기를 5분과 1시간 중 무엇으로 둘지\"",
+   "result": "match",
+   "ms": 425
+  },
+  {
+   "n": 9,
+   "name": "충돌 해소 2회 실패",
+   "source": "충돌 상한",
+   "expect": "사람에게 넘김 + 두 번의 시도 내역 표시",
+   "actual": "픽스처로 지어내지 않는다 — 샌드박스에는 워커 세션이 없어 해소를 시도하지 않는다(`src/fleet/execute.mjs` conflict). 반입한 회차 185개의 표에서 \"충돌\" 이 든 행 0개",
+   "result": "skip",
+   "ms": null
+  },
+  {
+   "n": 10,
+   "name": "결정 필요 표시 슬라이스",
+   "source": "계획서 태그",
+   "pass": "base",
+   "expect": "atlas 5번 `[결정 필요: 보관 기간]` — 파견하지 않고 보고만(decision)",
+   "actual": "atlas 5번 보류(decision) — 결정 필요: 보관 기간 — 사용자 결정 뒤에",
+   "result": "match",
+   "ms": 407
+  }
+ ]
+}

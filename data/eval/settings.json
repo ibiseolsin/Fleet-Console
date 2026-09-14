@@ -1,0 +1,1215 @@
+{
+ "builtAt": "2026-09-10T16:56:09.513Z",
+ "note": "동시 상한 × 재개 상한을 갈아 끼워 같은 픽스처를 관찰한 결과. 만든 것은 scripts/eval-settings.mjs (npm run eval:settings). 두 번 돌리면 같다 — 다만 사유 문장 몇 개가 시각을 담아(한도 초기화 시각·잠든 시각) 분이 바뀌는 순간에 걸치면 그 문자열만 달라진다. 수와 갈래는 안 바뀐다.",
+ "axes": {
+  "caps": [
+   2,
+   3,
+   5
+  ],
+  "resumeMax": [
+   1,
+   2,
+   3
+  ],
+  "fixedCap": 3
+ },
+ "baseline": {
+  "settings": {
+   "caps": {
+    "atlas": 3,
+    "beacon": 2,
+    "cobalt": 3
+   },
+   "resumeMax": 2
+  },
+  "slices": {
+   "undone": 11,
+   "eligible": 2,
+   "held": 9
+  },
+  "eligibleList": [
+   "beacon 4번",
+   "cobalt 2번"
+  ],
+  "holds": {
+   "running": 4,
+   "deps-undone": 1,
+   "decision": 1,
+   "cap-project": 1,
+   "plan-error": 1,
+   "solo": 1
+  },
+  "otherReasons": [],
+  "resumeActions": {
+   "drop": 2,
+   "resume": 1,
+   "blocked": 1,
+   "wait": 1,
+   "exhausted": 1
+  },
+  "resumeRows": [
+   {
+    "where": "atlas/slice2",
+    "action": "drop",
+    "attempts": 0,
+    "reason": "2번이 워크스페이스 PLAN.md 에서 체크됨"
+   },
+   {
+    "where": "atlas/slice3",
+    "action": "resume",
+    "attempts": 0,
+    "reason": "codex 래퍼 새 턴 (1/2)"
+   },
+   {
+    "where": "atlas/slice9",
+    "action": "drop",
+    "attempts": 1,
+    "reason": "워크스페이스가 없음"
+   },
+   {
+    "where": "beacon/slice2",
+    "action": "blocked",
+    "attempts": 0,
+    "reason": "창이 없음 — 닫혔거나 잠듦, CLI 로 못 깨움 (Orca 에서 탭을 열어야 함)"
+   },
+   {
+    "where": "beacon/slice3",
+    "action": "wait",
+    "attempts": 1,
+    "reason": "워커가 결정을 기다림: 수집 주기를 5분과 1시간 중 무엇으로 둘지"
+   },
+   {
+    "where": "cobalt/slice5",
+    "action": "exhausted",
+    "attempts": 2,
+    "reason": "재개 2회 실패 — 사람이 볼 것 (codex 사용량 한도)"
+   }
+  ],
+  "calls": {
+   "landBlocked": 3,
+   "cardWait": 1,
+   "resumeExhausted": 1,
+   "decision": 1,
+   "capReached": 1
+  },
+  "callTargets": {
+   "landBlocked": [
+    "atlas/slice3",
+    "beacon/slice2",
+    "cobalt/slice5"
+   ],
+   "cardWait": [
+    "beacon/slice3"
+   ],
+   "resumeExhausted": [
+    "cobalt/slice5"
+   ],
+   "decision": [
+    "atlas 5번"
+   ],
+   "capReached": [
+    "beacon 5번"
+   ]
+  },
+  "callsTotal": 7,
+  "callTargetsUnique": 6
+ },
+ "sample": {
+  "undoneSlices": 11,
+  "workspaces": 5,
+  "resumeEntries": 6,
+  "capProjectSlices": 1,
+  "note": "cap-project 표본이 1개다. 픽스처를 늘리지 않는다 — 늘리면 슬라이스 8의 시나리오 표본이 같이 바뀐다 (검토 R5)."
+ },
+ "callKinds": [
+  {
+   "key": "landBlocked",
+   "label": "착륙 막힘"
+  },
+  {
+   "key": "cardWait",
+   "label": "카드 질문 대기"
+  },
+  {
+   "key": "resumeExhausted",
+   "label": "재개 소진"
+  },
+  {
+   "key": "decision",
+   "label": "결정 필요 슬라이스"
+  },
+  {
+   "key": "capReached",
+   "label": "상한 도달"
+  }
+ ],
+ "rows": [
+  {
+   "caps": 2,
+   "resumeMax": 1,
+   "settings": {
+    "caps": {
+     "atlas": 2,
+     "beacon": 2,
+     "cobalt": 2
+    },
+    "resumeMax": 1
+   },
+   "slices": {
+    "undone": 11,
+    "eligible": 2,
+    "held": 9
+   },
+   "eligibleList": [
+    "beacon 4번",
+    "cobalt 2번"
+   ],
+   "holds": {
+    "running": 4,
+    "deps-undone": 1,
+    "decision": 1,
+    "cap-project": 1,
+    "plan-error": 1,
+    "solo": 1
+   },
+   "otherReasons": [],
+   "resumeActions": {
+    "drop": 2,
+    "resume": 1,
+    "blocked": 1,
+    "exhausted": 2
+   },
+   "resumeRows": [
+    {
+     "where": "atlas/slice2",
+     "action": "drop",
+     "attempts": 0,
+     "reason": "2번이 워크스페이스 PLAN.md 에서 체크됨"
+    },
+    {
+     "where": "atlas/slice3",
+     "action": "resume",
+     "attempts": 0,
+     "reason": "codex 래퍼 새 턴 (1/1)"
+    },
+    {
+     "where": "atlas/slice9",
+     "action": "drop",
+     "attempts": 1,
+     "reason": "워크스페이스가 없음"
+    },
+    {
+     "where": "beacon/slice2",
+     "action": "blocked",
+     "attempts": 0,
+     "reason": "창이 없음 — 닫혔거나 잠듦, CLI 로 못 깨움 (Orca 에서 탭을 열어야 함)"
+    },
+    {
+     "where": "beacon/slice3",
+     "action": "exhausted",
+     "attempts": 1,
+     "reason": "재개 1회 실패 — 사람이 볼 것 (claude 5시간 한도)"
+    },
+    {
+     "where": "cobalt/slice5",
+     "action": "exhausted",
+     "attempts": 2,
+     "reason": "재개 2회 실패 — 사람이 볼 것 (codex 사용량 한도)"
+    }
+   ],
+   "calls": {
+    "landBlocked": 3,
+    "cardWait": 1,
+    "resumeExhausted": 2,
+    "decision": 1,
+    "capReached": 1
+   },
+   "callTargets": {
+    "landBlocked": [
+     "atlas/slice3",
+     "beacon/slice2",
+     "cobalt/slice5"
+    ],
+    "cardWait": [
+     "beacon/slice3"
+    ],
+    "resumeExhausted": [
+     "beacon/slice3",
+     "cobalt/slice5"
+    ],
+    "decision": [
+     "atlas 5번"
+    ],
+    "capReached": [
+     "beacon 5번"
+    ]
+   },
+   "callsTotal": 8,
+   "callTargetsUnique": 6
+  },
+  {
+   "caps": 2,
+   "resumeMax": 2,
+   "settings": {
+    "caps": {
+     "atlas": 2,
+     "beacon": 2,
+     "cobalt": 2
+    },
+    "resumeMax": 2
+   },
+   "slices": {
+    "undone": 11,
+    "eligible": 2,
+    "held": 9
+   },
+   "eligibleList": [
+    "beacon 4번",
+    "cobalt 2번"
+   ],
+   "holds": {
+    "running": 4,
+    "deps-undone": 1,
+    "decision": 1,
+    "cap-project": 1,
+    "plan-error": 1,
+    "solo": 1
+   },
+   "otherReasons": [],
+   "resumeActions": {
+    "drop": 2,
+    "resume": 1,
+    "blocked": 1,
+    "wait": 1,
+    "exhausted": 1
+   },
+   "resumeRows": [
+    {
+     "where": "atlas/slice2",
+     "action": "drop",
+     "attempts": 0,
+     "reason": "2번이 워크스페이스 PLAN.md 에서 체크됨"
+    },
+    {
+     "where": "atlas/slice3",
+     "action": "resume",
+     "attempts": 0,
+     "reason": "codex 래퍼 새 턴 (1/2)"
+    },
+    {
+     "where": "atlas/slice9",
+     "action": "drop",
+     "attempts": 1,
+     "reason": "워크스페이스가 없음"
+    },
+    {
+     "where": "beacon/slice2",
+     "action": "blocked",
+     "attempts": 0,
+     "reason": "창이 없음 — 닫혔거나 잠듦, CLI 로 못 깨움 (Orca 에서 탭을 열어야 함)"
+    },
+    {
+     "where": "beacon/slice3",
+     "action": "wait",
+     "attempts": 1,
+     "reason": "워커가 결정을 기다림: 수집 주기를 5분과 1시간 중 무엇으로 둘지"
+    },
+    {
+     "where": "cobalt/slice5",
+     "action": "exhausted",
+     "attempts": 2,
+     "reason": "재개 2회 실패 — 사람이 볼 것 (codex 사용량 한도)"
+    }
+   ],
+   "calls": {
+    "landBlocked": 3,
+    "cardWait": 1,
+    "resumeExhausted": 1,
+    "decision": 1,
+    "capReached": 1
+   },
+   "callTargets": {
+    "landBlocked": [
+     "atlas/slice3",
+     "beacon/slice2",
+     "cobalt/slice5"
+    ],
+    "cardWait": [
+     "beacon/slice3"
+    ],
+    "resumeExhausted": [
+     "cobalt/slice5"
+    ],
+    "decision": [
+     "atlas 5번"
+    ],
+    "capReached": [
+     "beacon 5번"
+    ]
+   },
+   "callsTotal": 7,
+   "callTargetsUnique": 6
+  },
+  {
+   "caps": 2,
+   "resumeMax": 3,
+   "settings": {
+    "caps": {
+     "atlas": 2,
+     "beacon": 2,
+     "cobalt": 2
+    },
+    "resumeMax": 3
+   },
+   "slices": {
+    "undone": 11,
+    "eligible": 2,
+    "held": 9
+   },
+   "eligibleList": [
+    "beacon 4번",
+    "cobalt 2번"
+   ],
+   "holds": {
+    "running": 4,
+    "deps-undone": 1,
+    "decision": 1,
+    "cap-project": 1,
+    "plan-error": 1,
+    "solo": 1
+   },
+   "otherReasons": [],
+   "resumeActions": {
+    "drop": 2,
+    "resume": 2,
+    "blocked": 1,
+    "wait": 1
+   },
+   "resumeRows": [
+    {
+     "where": "atlas/slice2",
+     "action": "drop",
+     "attempts": 0,
+     "reason": "2번이 워크스페이스 PLAN.md 에서 체크됨"
+    },
+    {
+     "where": "atlas/slice3",
+     "action": "resume",
+     "attempts": 0,
+     "reason": "codex 래퍼 새 턴 (1/3)"
+    },
+    {
+     "where": "atlas/slice9",
+     "action": "drop",
+     "attempts": 1,
+     "reason": "워크스페이스가 없음"
+    },
+    {
+     "where": "beacon/slice2",
+     "action": "blocked",
+     "attempts": 0,
+     "reason": "창이 없음 — 닫혔거나 잠듦, CLI 로 못 깨움 (Orca 에서 탭을 열어야 함)"
+    },
+    {
+     "where": "beacon/slice3",
+     "action": "wait",
+     "attempts": 1,
+     "reason": "워커가 결정을 기다림: 수집 주기를 5분과 1시간 중 무엇으로 둘지"
+    },
+    {
+     "where": "cobalt/slice5",
+     "action": "resume",
+     "attempts": 2,
+     "reason": "codex 래퍼 새 턴 (3/3)"
+    }
+   ],
+   "calls": {
+    "landBlocked": 3,
+    "cardWait": 1,
+    "resumeExhausted": 0,
+    "decision": 1,
+    "capReached": 1
+   },
+   "callTargets": {
+    "landBlocked": [
+     "atlas/slice3",
+     "beacon/slice2",
+     "cobalt/slice5"
+    ],
+    "cardWait": [
+     "beacon/slice3"
+    ],
+    "resumeExhausted": [],
+    "decision": [
+     "atlas 5번"
+    ],
+    "capReached": [
+     "beacon 5번"
+    ]
+   },
+   "callsTotal": 6,
+   "callTargetsUnique": 6
+  },
+  {
+   "caps": 3,
+   "resumeMax": 1,
+   "settings": {
+    "caps": {
+     "atlas": 3,
+     "beacon": 3,
+     "cobalt": 3
+    },
+    "resumeMax": 1
+   },
+   "slices": {
+    "undone": 11,
+    "eligible": 3,
+    "held": 8
+   },
+   "eligibleList": [
+    "beacon 4번",
+    "beacon 5번",
+    "cobalt 2번"
+   ],
+   "holds": {
+    "running": 4,
+    "deps-undone": 1,
+    "decision": 1,
+    "plan-error": 1,
+    "solo": 1
+   },
+   "otherReasons": [],
+   "resumeActions": {
+    "drop": 2,
+    "resume": 1,
+    "blocked": 1,
+    "exhausted": 2
+   },
+   "resumeRows": [
+    {
+     "where": "atlas/slice2",
+     "action": "drop",
+     "attempts": 0,
+     "reason": "2번이 워크스페이스 PLAN.md 에서 체크됨"
+    },
+    {
+     "where": "atlas/slice3",
+     "action": "resume",
+     "attempts": 0,
+     "reason": "codex 래퍼 새 턴 (1/1)"
+    },
+    {
+     "where": "atlas/slice9",
+     "action": "drop",
+     "attempts": 1,
+     "reason": "워크스페이스가 없음"
+    },
+    {
+     "where": "beacon/slice2",
+     "action": "blocked",
+     "attempts": 0,
+     "reason": "창이 없음 — 닫혔거나 잠듦, CLI 로 못 깨움 (Orca 에서 탭을 열어야 함)"
+    },
+    {
+     "where": "beacon/slice3",
+     "action": "exhausted",
+     "attempts": 1,
+     "reason": "재개 1회 실패 — 사람이 볼 것 (claude 5시간 한도)"
+    },
+    {
+     "where": "cobalt/slice5",
+     "action": "exhausted",
+     "attempts": 2,
+     "reason": "재개 2회 실패 — 사람이 볼 것 (codex 사용량 한도)"
+    }
+   ],
+   "calls": {
+    "landBlocked": 3,
+    "cardWait": 1,
+    "resumeExhausted": 2,
+    "decision": 1,
+    "capReached": 0
+   },
+   "callTargets": {
+    "landBlocked": [
+     "atlas/slice3",
+     "beacon/slice2",
+     "cobalt/slice5"
+    ],
+    "cardWait": [
+     "beacon/slice3"
+    ],
+    "resumeExhausted": [
+     "beacon/slice3",
+     "cobalt/slice5"
+    ],
+    "decision": [
+     "atlas 5번"
+    ],
+    "capReached": []
+   },
+   "callsTotal": 7,
+   "callTargetsUnique": 5
+  },
+  {
+   "caps": 3,
+   "resumeMax": 2,
+   "settings": {
+    "caps": {
+     "atlas": 3,
+     "beacon": 3,
+     "cobalt": 3
+    },
+    "resumeMax": 2
+   },
+   "slices": {
+    "undone": 11,
+    "eligible": 3,
+    "held": 8
+   },
+   "eligibleList": [
+    "beacon 4번",
+    "beacon 5번",
+    "cobalt 2번"
+   ],
+   "holds": {
+    "running": 4,
+    "deps-undone": 1,
+    "decision": 1,
+    "plan-error": 1,
+    "solo": 1
+   },
+   "otherReasons": [],
+   "resumeActions": {
+    "drop": 2,
+    "resume": 1,
+    "blocked": 1,
+    "wait": 1,
+    "exhausted": 1
+   },
+   "resumeRows": [
+    {
+     "where": "atlas/slice2",
+     "action": "drop",
+     "attempts": 0,
+     "reason": "2번이 워크스페이스 PLAN.md 에서 체크됨"
+    },
+    {
+     "where": "atlas/slice3",
+     "action": "resume",
+     "attempts": 0,
+     "reason": "codex 래퍼 새 턴 (1/2)"
+    },
+    {
+     "where": "atlas/slice9",
+     "action": "drop",
+     "attempts": 1,
+     "reason": "워크스페이스가 없음"
+    },
+    {
+     "where": "beacon/slice2",
+     "action": "blocked",
+     "attempts": 0,
+     "reason": "창이 없음 — 닫혔거나 잠듦, CLI 로 못 깨움 (Orca 에서 탭을 열어야 함)"
+    },
+    {
+     "where": "beacon/slice3",
+     "action": "wait",
+     "attempts": 1,
+     "reason": "워커가 결정을 기다림: 수집 주기를 5분과 1시간 중 무엇으로 둘지"
+    },
+    {
+     "where": "cobalt/slice5",
+     "action": "exhausted",
+     "attempts": 2,
+     "reason": "재개 2회 실패 — 사람이 볼 것 (codex 사용량 한도)"
+    }
+   ],
+   "calls": {
+    "landBlocked": 3,
+    "cardWait": 1,
+    "resumeExhausted": 1,
+    "decision": 1,
+    "capReached": 0
+   },
+   "callTargets": {
+    "landBlocked": [
+     "atlas/slice3",
+     "beacon/slice2",
+     "cobalt/slice5"
+    ],
+    "cardWait": [
+     "beacon/slice3"
+    ],
+    "resumeExhausted": [
+     "cobalt/slice5"
+    ],
+    "decision": [
+     "atlas 5번"
+    ],
+    "capReached": []
+   },
+   "callsTotal": 6,
+   "callTargetsUnique": 5
+  },
+  {
+   "caps": 3,
+   "resumeMax": 3,
+   "settings": {
+    "caps": {
+     "atlas": 3,
+     "beacon": 3,
+     "cobalt": 3
+    },
+    "resumeMax": 3
+   },
+   "slices": {
+    "undone": 11,
+    "eligible": 3,
+    "held": 8
+   },
+   "eligibleList": [
+    "beacon 4번",
+    "beacon 5번",
+    "cobalt 2번"
+   ],
+   "holds": {
+    "running": 4,
+    "deps-undone": 1,
+    "decision": 1,
+    "plan-error": 1,
+    "solo": 1
+   },
+   "otherReasons": [],
+   "resumeActions": {
+    "drop": 2,
+    "resume": 2,
+    "blocked": 1,
+    "wait": 1
+   },
+   "resumeRows": [
+    {
+     "where": "atlas/slice2",
+     "action": "drop",
+     "attempts": 0,
+     "reason": "2번이 워크스페이스 PLAN.md 에서 체크됨"
+    },
+    {
+     "where": "atlas/slice3",
+     "action": "resume",
+     "attempts": 0,
+     "reason": "codex 래퍼 새 턴 (1/3)"
+    },
+    {
+     "where": "atlas/slice9",
+     "action": "drop",
+     "attempts": 1,
+     "reason": "워크스페이스가 없음"
+    },
+    {
+     "where": "beacon/slice2",
+     "action": "blocked",
+     "attempts": 0,
+     "reason": "창이 없음 — 닫혔거나 잠듦, CLI 로 못 깨움 (Orca 에서 탭을 열어야 함)"
+    },
+    {
+     "where": "beacon/slice3",
+     "action": "wait",
+     "attempts": 1,
+     "reason": "워커가 결정을 기다림: 수집 주기를 5분과 1시간 중 무엇으로 둘지"
+    },
+    {
+     "where": "cobalt/slice5",
+     "action": "resume",
+     "attempts": 2,
+     "reason": "codex 래퍼 새 턴 (3/3)"
+    }
+   ],
+   "calls": {
+    "landBlocked": 3,
+    "cardWait": 1,
+    "resumeExhausted": 0,
+    "decision": 1,
+    "capReached": 0
+   },
+   "callTargets": {
+    "landBlocked": [
+     "atlas/slice3",
+     "beacon/slice2",
+     "cobalt/slice5"
+    ],
+    "cardWait": [
+     "beacon/slice3"
+    ],
+    "resumeExhausted": [],
+    "decision": [
+     "atlas 5번"
+    ],
+    "capReached": []
+   },
+   "callsTotal": 5,
+   "callTargetsUnique": 5
+  },
+  {
+   "caps": 5,
+   "resumeMax": 1,
+   "settings": {
+    "caps": {
+     "atlas": 5,
+     "beacon": 5,
+     "cobalt": 5
+    },
+    "resumeMax": 1
+   },
+   "slices": {
+    "undone": 11,
+    "eligible": 3,
+    "held": 8
+   },
+   "eligibleList": [
+    "beacon 4번",
+    "beacon 5번",
+    "cobalt 2번"
+   ],
+   "holds": {
+    "running": 4,
+    "deps-undone": 1,
+    "decision": 1,
+    "plan-error": 1,
+    "solo": 1
+   },
+   "otherReasons": [],
+   "resumeActions": {
+    "drop": 2,
+    "resume": 1,
+    "blocked": 1,
+    "exhausted": 2
+   },
+   "resumeRows": [
+    {
+     "where": "atlas/slice2",
+     "action": "drop",
+     "attempts": 0,
+     "reason": "2번이 워크스페이스 PLAN.md 에서 체크됨"
+    },
+    {
+     "where": "atlas/slice3",
+     "action": "resume",
+     "attempts": 0,
+     "reason": "codex 래퍼 새 턴 (1/1)"
+    },
+    {
+     "where": "atlas/slice9",
+     "action": "drop",
+     "attempts": 1,
+     "reason": "워크스페이스가 없음"
+    },
+    {
+     "where": "beacon/slice2",
+     "action": "blocked",
+     "attempts": 0,
+     "reason": "창이 없음 — 닫혔거나 잠듦, CLI 로 못 깨움 (Orca 에서 탭을 열어야 함)"
+    },
+    {
+     "where": "beacon/slice3",
+     "action": "exhausted",
+     "attempts": 1,
+     "reason": "재개 1회 실패 — 사람이 볼 것 (claude 5시간 한도)"
+    },
+    {
+     "where": "cobalt/slice5",
+     "action": "exhausted",
+     "attempts": 2,
+     "reason": "재개 2회 실패 — 사람이 볼 것 (codex 사용량 한도)"
+    }
+   ],
+   "calls": {
+    "landBlocked": 3,
+    "cardWait": 1,
+    "resumeExhausted": 2,
+    "decision": 1,
+    "capReached": 0
+   },
+   "callTargets": {
+    "landBlocked": [
+     "atlas/slice3",
+     "beacon/slice2",
+     "cobalt/slice5"
+    ],
+    "cardWait": [
+     "beacon/slice3"
+    ],
+    "resumeExhausted": [
+     "beacon/slice3",
+     "cobalt/slice5"
+    ],
+    "decision": [
+     "atlas 5번"
+    ],
+    "capReached": []
+   },
+   "callsTotal": 7,
+   "callTargetsUnique": 5
+  },
+  {
+   "caps": 5,
+   "resumeMax": 2,
+   "settings": {
+    "caps": {
+     "atlas": 5,
+     "beacon": 5,
+     "cobalt": 5
+    },
+    "resumeMax": 2
+   },
+   "slices": {
+    "undone": 11,
+    "eligible": 3,
+    "held": 8
+   },
+   "eligibleList": [
+    "beacon 4번",
+    "beacon 5번",
+    "cobalt 2번"
+   ],
+   "holds": {
+    "running": 4,
+    "deps-undone": 1,
+    "decision": 1,
+    "plan-error": 1,
+    "solo": 1
+   },
+   "otherReasons": [],
+   "resumeActions": {
+    "drop": 2,
+    "resume": 1,
+    "blocked": 1,
+    "wait": 1,
+    "exhausted": 1
+   },
+   "resumeRows": [
+    {
+     "where": "atlas/slice2",
+     "action": "drop",
+     "attempts": 0,
+     "reason": "2번이 워크스페이스 PLAN.md 에서 체크됨"
+    },
+    {
+     "where": "atlas/slice3",
+     "action": "resume",
+     "attempts": 0,
+     "reason": "codex 래퍼 새 턴 (1/2)"
+    },
+    {
+     "where": "atlas/slice9",
+     "action": "drop",
+     "attempts": 1,
+     "reason": "워크스페이스가 없음"
+    },
+    {
+     "where": "beacon/slice2",
+     "action": "blocked",
+     "attempts": 0,
+     "reason": "창이 없음 — 닫혔거나 잠듦, CLI 로 못 깨움 (Orca 에서 탭을 열어야 함)"
+    },
+    {
+     "where": "beacon/slice3",
+     "action": "wait",
+     "attempts": 1,
+     "reason": "워커가 결정을 기다림: 수집 주기를 5분과 1시간 중 무엇으로 둘지"
+    },
+    {
+     "where": "cobalt/slice5",
+     "action": "exhausted",
+     "attempts": 2,
+     "reason": "재개 2회 실패 — 사람이 볼 것 (codex 사용량 한도)"
+    }
+   ],
+   "calls": {
+    "landBlocked": 3,
+    "cardWait": 1,
+    "resumeExhausted": 1,
+    "decision": 1,
+    "capReached": 0
+   },
+   "callTargets": {
+    "landBlocked": [
+     "atlas/slice3",
+     "beacon/slice2",
+     "cobalt/slice5"
+    ],
+    "cardWait": [
+     "beacon/slice3"
+    ],
+    "resumeExhausted": [
+     "cobalt/slice5"
+    ],
+    "decision": [
+     "atlas 5번"
+    ],
+    "capReached": []
+   },
+   "callsTotal": 6,
+   "callTargetsUnique": 5
+  },
+  {
+   "caps": 5,
+   "resumeMax": 3,
+   "settings": {
+    "caps": {
+     "atlas": 5,
+     "beacon": 5,
+     "cobalt": 5
+    },
+    "resumeMax": 3
+   },
+   "slices": {
+    "undone": 11,
+    "eligible": 3,
+    "held": 8
+   },
+   "eligibleList": [
+    "beacon 4번",
+    "beacon 5번",
+    "cobalt 2번"
+   ],
+   "holds": {
+    "running": 4,
+    "deps-undone": 1,
+    "decision": 1,
+    "plan-error": 1,
+    "solo": 1
+   },
+   "otherReasons": [],
+   "resumeActions": {
+    "drop": 2,
+    "resume": 2,
+    "blocked": 1,
+    "wait": 1
+   },
+   "resumeRows": [
+    {
+     "where": "atlas/slice2",
+     "action": "drop",
+     "attempts": 0,
+     "reason": "2번이 워크스페이스 PLAN.md 에서 체크됨"
+    },
+    {
+     "where": "atlas/slice3",
+     "action": "resume",
+     "attempts": 0,
+     "reason": "codex 래퍼 새 턴 (1/3)"
+    },
+    {
+     "where": "atlas/slice9",
+     "action": "drop",
+     "attempts": 1,
+     "reason": "워크스페이스가 없음"
+    },
+    {
+     "where": "beacon/slice2",
+     "action": "blocked",
+     "attempts": 0,
+     "reason": "창이 없음 — 닫혔거나 잠듦, CLI 로 못 깨움 (Orca 에서 탭을 열어야 함)"
+    },
+    {
+     "where": "beacon/slice3",
+     "action": "wait",
+     "attempts": 1,
+     "reason": "워커가 결정을 기다림: 수집 주기를 5분과 1시간 중 무엇으로 둘지"
+    },
+    {
+     "where": "cobalt/slice5",
+     "action": "resume",
+     "attempts": 2,
+     "reason": "codex 래퍼 새 턴 (3/3)"
+    }
+   ],
+   "calls": {
+    "landBlocked": 3,
+    "cardWait": 1,
+    "resumeExhausted": 0,
+    "decision": 1,
+    "capReached": 0
+   },
+   "callTargets": {
+    "landBlocked": [
+     "atlas/slice3",
+     "beacon/slice2",
+     "cobalt/slice5"
+    ],
+    "cardWait": [
+     "beacon/slice3"
+    ],
+    "resumeExhausted": [],
+    "decision": [
+     "atlas 5번"
+    ],
+    "capReached": []
+   },
+   "callsTotal": 5,
+   "callTargetsUnique": 5
+  }
+ ],
+ "sweeps": {
+  "caps": {
+   "fixed": {
+    "resumeMax": 2
+   },
+   "values": [
+    2,
+    3,
+    5
+   ],
+   "eligible": [
+    2,
+    3,
+    3
+   ],
+   "capProject": [
+    1,
+    0,
+    0
+   ],
+   "calls": [
+    7,
+    6,
+    6
+   ]
+  },
+  "resumeMax": {
+   "fixed": {
+    "caps": 3
+   },
+   "values": [
+    1,
+    2,
+    3
+   ],
+   "actions": {
+    "exhausted": [
+     2,
+     1,
+     0
+    ],
+    "wait": [
+     0,
+     1,
+     1
+    ],
+    "resume": [
+     1,
+     1,
+     2
+    ],
+    "drop": [
+     2,
+     2,
+     2
+    ],
+    "blocked": [
+     1,
+     1,
+     1
+    ]
+   },
+   "watched": [
+    {
+     "where": "atlas/slice2",
+     "actions": [
+      "drop",
+      "drop",
+      "drop"
+     ]
+    },
+    {
+     "where": "atlas/slice3",
+     "actions": [
+      "resume",
+      "resume",
+      "resume"
+     ]
+    },
+    {
+     "where": "atlas/slice9",
+     "actions": [
+      "drop",
+      "drop",
+      "drop"
+     ]
+    },
+    {
+     "where": "beacon/slice2",
+     "actions": [
+      "blocked",
+      "blocked",
+      "blocked"
+     ]
+    },
+    {
+     "where": "beacon/slice3",
+     "actions": [
+      "exhausted",
+      "wait",
+      "wait"
+     ]
+    },
+    {
+     "where": "cobalt/slice5",
+     "actions": [
+      "exhausted",
+      "exhausted",
+      "resume"
+     ]
+    }
+   ]
+  }
+ },
+ "agents": [
+  {
+   "where": "atlas/slice2",
+   "kind": "헤드리스",
+   "agent": "codex",
+   "state": "ready",
+   "reason": "체크 완료 · 커밋 1개 · 깨끗함",
+   "resume": "drop"
+  },
+  {
+   "where": "atlas/slice3",
+   "kind": "헤드리스",
+   "agent": "codex",
+   "state": "blocked",
+   "reason": "유휴인데 3번이 미체크 — 막힘 (재전송하지 않음)",
+   "resume": "resume"
+  },
+  {
+   "where": "beacon/slice2",
+   "kind": "TUI",
+   "agent": "claude",
+   "state": "blocked",
+   "reason": "잠듦(claude done 22:46) · 유휴인데 2번이 미체크 — 막힘 (재전송하지 않음) — CLI 로 못 깨움 — 사람이 Orca 에서 탭을 열어야 함",
+   "resume": "blocked"
+  },
+  {
+   "where": "beacon/slice3",
+   "kind": "TUI",
+   "agent": "claude",
+   "state": "busy",
+   "reason": "턴 진행 중 (프롬프트 뒤 Stop 이 아직 없음)",
+   "resume": "wait"
+  },
+  {
+   "where": "cobalt/slice5",
+   "kind": "헤드리스",
+   "agent": null,
+   "state": "blocked",
+   "reason": "헤드리스(codex) 한도 막힘 — 초기화 03:31 (exit 1)",
+   "resume": "exhausted"
+  }
+ ],
+ "isolation": {
+  "files": 233,
+  "drift": []
+ }
+}

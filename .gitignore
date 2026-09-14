@@ -1,0 +1,32 @@
+node_modules/
+.next/
+out/
+dist/
+build/
+.env
+.env.*
+!.env.example
+.vercel
+*.log
+.DS_Store
+
+# 로컬 전용 — 실명·매핑·제외 목록. 절대 커밋하지 않는다.
+*.local.md
+*.local.json
+
+# 픽스처 생성물 — `npm run fixture` 로 다시 만든다.
+sandbox/fleet/
+sandbox/runs/
+
+# 승인 큐 — 이 기계에서 무엇을 승인·보류했나. 실행 기록이지 소스가 아니다.
+sandbox/approvals.json
+
+# 웹 앱 — 의존성과 빌드 산출물
+web/node_modules/
+web/.next/
+
+# 에이전트 루프 실행 기록 — 이 기계에서 돈 실행. 커밋하지 않는다.
+sandbox/agent-runs/
+
+# Visitor state, daily quota, SDK sessions and local verification artifacts.
+sandbox/
